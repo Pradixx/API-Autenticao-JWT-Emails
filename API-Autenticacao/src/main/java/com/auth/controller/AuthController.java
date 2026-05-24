@@ -44,4 +44,11 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    // POST /api/auth/resend-verification
+    @PostMapping("/resend-verification")
+    public ResponseEntity<MessageResponse> resendVerification(@RequestParam String email) {
+        MessageResponse response = authService.resendVerification(email);
+        return ResponseEntity.ok(response);
+    }
+
 }
