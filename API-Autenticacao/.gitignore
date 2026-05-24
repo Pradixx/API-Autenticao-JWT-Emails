@@ -1,0 +1,60 @@
+# ===== Compilação Maven =====
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ===== IDEs =====
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### VS Code ###
+.vscode/
+
+# ===== Spring Boot =====
+spring-shell.log
+
+# ===== Variáveis de Ambiente e Segredos =====
+.env
+.env.*
+*.env
+application-local.yml
+application-local.properties
+application-secrets.yml
+application-secrets.properties
+
+# ===== Logs =====
+*.log
+logs/
+
+# ===== Sistema Operacional =====
+
+### Windows ###
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+### macOS ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ===== Maven Wrapper =====
+.mvn/wrapper/maven-wrapper.properties
