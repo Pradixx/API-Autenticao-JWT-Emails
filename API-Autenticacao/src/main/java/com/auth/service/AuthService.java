@@ -150,13 +150,22 @@ public class AuthService {
     @Transactional
     public MessageResponse resendVerification(String email) {
 
-        // 1. Busca o usuário
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException(email));
+        // Resposta genérica usada em todos os casos para evitar enumeração de e-mails
+        final String genericMessage =
+                "Se este e-mail estiver cadastrado e não verificado, você receberá um novo link em breve.";
 
-        // 2. Verifica se já está ativo
+        // 1. Busca o usuário — retorna mensagem genérica se não encontrado (sem revelar existência)
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            log.debug("Reenvio solicitado para e-mail não cadastrado: {}", email);
+            return new MessageResponse(genericMessage);
+        }
+
+        // 2. Verifica se já está ativo — retorna mensagem genérica sem revelar o estado
         if (user.isEnabled()) {
-            return new MessageResponse("Este e-mail já foi verificado. Faça login normalmente.");
+            log.debug("Reenvio solicitado para e-mail já verificado: {}", email);
+            return new MessageResponse(genericMessage);
         }
 
         // 3. Remove token anterior, se existir
@@ -170,9 +179,7 @@ public class AuthService {
 
         log.info("Novo e-mail de verificação enviado para: {}", email);
 
-        return new MessageResponse(
-                "Novo e-mail de verificação enviado. Verifique sua caixa de entrada."
-        );
+        return new MessageResponse(genericMessage);
     }
 
     // ===== Método Privado =====
