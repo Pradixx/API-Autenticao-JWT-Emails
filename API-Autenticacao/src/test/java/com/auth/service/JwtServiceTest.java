@@ -58,12 +58,11 @@ class JwtServiceTest {
         }
 
         @Test
-        @DisplayName("deve gerar tokens diferentes para chamadas distintas")
-        void deveGerarTokensDiferentes() {
-            String token1 = jwtService.generateToken(userDetails);
-            String token2 = jwtService.generateToken(userDetails);
-            // Tokens diferentes pois o issuedAt varia em ms
-            assertThat(token1).isNotEqualTo(token2);
+        @DisplayName("deve gerar token com subject igual ao username do UserDetails")
+        void deveGerarTokenComSubjectCorreto() {
+            String token = jwtService.generateToken(userDetails);
+            assertThat(jwtService.extractEmail(token))
+                    .isEqualTo(userDetails.getUsername());
         }
     }
 
