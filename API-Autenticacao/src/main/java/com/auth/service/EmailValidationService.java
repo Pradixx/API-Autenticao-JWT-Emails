@@ -63,7 +63,7 @@ public class EmailValidationService {
             "spamfree24.info", "spamfree24.net",
             "spamspot.com", "spamthis.co.uk", "spamtroll.net",
             "spamhereplease.com", "spamherelots.com", "spamgoes.in",
-            "getnada.com", "mailnesia.com", "mailnull.com",
+            "getnada.com", "mailnesia.com",
             "0-mail.com", "0815.ru", "0clickemail.com",
             "spambog.com", "spambox.us", "mytemp.email"
 
